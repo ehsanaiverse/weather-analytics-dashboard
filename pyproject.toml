@@ -1,0 +1,55 @@
+[project]
+name = "weather-analytics-dashboard"
+version = "1.0.0"
+description = "Real-time weather analytics dashboard: a Streamlit app plus a FastAPI REST backend over Open-Meteo."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+    "requests>=2.31",
+    "pandas>=2.0",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "ruff>=0.5"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = [".venv", "venv", "frontend", "node_modules"]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "UP",   # pyupgrade
+    "B",    # bugbear
+    "SIM",  # simplify
+    "RET",  # return statements
+    "C4",   # comprehensions
+    "PIE",  # misc lints
+    "RSE",  # raise statements
+    "TID",  # tidy imports
+    "ARG",  # unused arguments
+    "PL",   # pylint
+    "D",    # pydocstyle
+]
+ignore = [
+    "D203",   # incompatible with D211
+    "D213",   # incompatible with D212
+    "C408",   # Plotly styling reads better as dict(...) keyword arguments
+    "PLR0913",# test payload builders legitimately take many keyword arguments
+    "PLR2004",# literal values are the point in most assertions
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D100", "D101", "D102", "D103", "D104", "ARG001", "ARG002", "PLR0913", "PLR2004"]
+"app/__init__.py" = ["D104"]
+"tests/__init__.py" = ["D104"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"

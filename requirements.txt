@@ -1,0 +1,9 @@
+# Real-Time Weather Analytics Dashboard - runtime dependencies
+# Install with:  pip install -r requirements.txt
+
+requests>=2.31
+pandas>=2.0
+
+# REST API for the React frontend (uvicorn app.main:app)
+fastapi>=0.115
+uvicorn[standard]>=0.30
